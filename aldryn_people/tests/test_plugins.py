@@ -1,17 +1,14 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.urls import reverse
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from cms import api
 from cms.utils.i18n import force_language
 
 from aldryn_people import DEFAULT_APP_NAMESPACE
 
-from . import BasePeopleTest, DefaultApphookMixin
 from ..cms_plugins import PeoplePlugin
 from ..models import Group, Person
+from . import BasePeopleTest, DefaultApphookMixin
 
 
 class TestPersonPlugins(DefaultApphookMixin, BasePeopleTest):
@@ -24,7 +21,7 @@ class TestPersonPlugins(DefaultApphookMixin, BasePeopleTest):
         Person.objects.create(name=name)
         plugin = api.add_plugin(self.placeholder, PeoplePlugin, self.language)
         plugin.people.set(Person.objects.all())
-        self.assertEqual(force_text(plugin), force_text(plugin.pk))
+        self.assertEqual(force_str(plugin), force_str(plugin.pk))
         self.page.publish(self.language)
 
         url = self.page.get_absolute_url()
@@ -103,7 +100,7 @@ class TestPersonPlugins(DefaultApphookMixin, BasePeopleTest):
 class TestPeopleListPluginNoApphook(BasePeopleTest):
 
     def setUp(self):
-        super(TestPeopleListPluginNoApphook, self).setUp()
+        super().setUp()
         # we are testing only en
         self.person1.set_current_language('en')
         self.namespace = DEFAULT_APP_NAMESPACE
@@ -181,7 +178,7 @@ class TestPeopleListPluginNoApphook(BasePeopleTest):
         with force_language('en'):
             self.create_apphook_page()
             person_vcard_url = reverse(
-                '{0}:download_vcard'.format(self.namespace),
+                f'{self.namespace}:download_vcard',
                 kwargs=vcard_kwargs)
         plugin = self.create_plugin(plugin_params={'show_vcard': True})
         url = self.page.get_absolute_url()

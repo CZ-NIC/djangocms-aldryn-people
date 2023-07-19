@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.db import models, migrations
 import django.db.models.deletion
 from django.conf import settings
@@ -105,7 +102,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name='persontranslation',
-            unique_together=set([('language_code', 'master')]),
+            unique_together={('language_code', 'master')},
         ),
         migrations.AddField(
             model_name='peopleplugin',
@@ -115,6 +112,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name='grouptranslation',
-            unique_together=set([('language_code', 'master')]),
+            unique_together={('language_code', 'master')},
         ),
     ]

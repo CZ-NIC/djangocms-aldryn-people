@@ -1,26 +1,20 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 import base64
 import warnings
 
 from django.conf import settings
 from django.db import models
 from django.urls import NoReverseMatch, reverse
-from django.utils.encoding import force_text, python_2_unicode_compatible
-from django.utils.translation import override, ugettext_lazy as _
+from django.utils.encoding import force_str
+from django.utils.translation import gettext_lazy as _, override
 
 from cms.models.pluginmodel import CMSPlugin
 from cms.utils.i18n import get_current_language, get_default_language
 
-import six
 from aldryn_common.admin_fields.sortedm2m import SortedM2MModelField
 from aldryn_translation_tools.models import TranslatedAutoSlugifyMixin, TranslationHelperMixin
 from djangocms_text_ckeditor.fields import HTMLField
 from filer.fields.image import FilerImageField
 from parler.models import TranslatableModel, TranslatedFields
-from six import text_type
 
 from aldryn_people.vcard import Vcard
 
@@ -33,7 +27,6 @@ except ImportError:
     from urllib import parse as urlparse
 
 
-@python_2_unicode_compatible
 class Group(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
             TranslatableModel):
     slug_source_field_name = 'name'
@@ -99,7 +92,6 @@ class Group(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
             return reverse('aldryn_people:group-detail', kwargs=kwargs)
 
 
-@python_2_unicode_compatible
 class Person(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
              TranslatableModel):
     slug_source_field_name = 'name'
@@ -144,8 +136,6 @@ class Person(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
     def __str__(self):
         pkstr = str(self.pk)
 
-        if six.PY2:
-            pkstr = six.u(pkstr)
         name = self.safe_translation_getter(
             'name',
             default='',
@@ -197,7 +187,7 @@ class Person(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
         function = self.safe_translation_getter('function')
 
         safe_name = self.safe_translation_getter(
-            'name', default="Person: {0}".format(self.pk))
+            'name', default=f"Person: {self.pk}")
         vcard.add_line('FN', safe_name)
         vcard.add_line('N', [None, safe_name, None, None, None])
 
@@ -205,9 +195,9 @@ class Person(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
             ext = self.visual.extension.upper()
             try:
                 with open(self.visual.path, 'rb') as f:
-                    data = force_text(base64.b64encode(f.read()))
+                    data = force_str(base64.b64encode(f.read()))
                     vcard.add_line('PHOTO', data, TYPE=ext, ENCODING='b')
-            except IOError:
+            except OSError:
                 if request:
                     url = urlparse.urljoin(request.build_absolute_uri(),
                                            self.visual.url),
@@ -231,7 +221,7 @@ class Person(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
 
         if self.primary_group:
             group_name = self.primary_group.safe_translation_getter(
-                'name', default="Group: {0}".format(self.primary_group.pk))
+                'name', default=f"Group: {self.primary_group.pk}")
             if group_name:
                 vcard.add_line('ORG', group_name)
             if self.primary_group.address or self.primary_group.city or self.primary_group.postal_code:
@@ -251,10 +241,9 @@ class Person(TranslationHelperMixin, TranslatedAutoSlugifyMixin,
             if self.primary_group.website:
                 vcard.add_line('URL', self.primary_group.website)
 
-        return six.b('{}'.format(vcard))
+        return f'{vcard}'.encode('utf8')
 
 
-@python_2_unicode_compatible
 class BasePeoplePlugin(CMSPlugin):
 
     STYLE_CHOICES = [
@@ -293,7 +282,7 @@ class BasePeoplePlugin(CMSPlugin):
         return self.people.select_related('visual')
 
     def __str__(self):
-        return text_type(self.pk)
+        return str(self.pk)
 
 
 class PeoplePlugin(BasePeoplePlugin):

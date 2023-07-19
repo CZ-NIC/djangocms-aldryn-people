@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.conf import settings
 from django.contrib import admin
 from django.db.models import Count
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 
@@ -38,7 +34,7 @@ class PersonAdmin(PlaceholderAdminMixin,
                 kwargs['widget'] = admin.widgets.ForeignKeyRawIdWidget(
                     db_field.rel, self.admin_site, using=kwargs.get('using'))
                 return db_field.formfield(**kwargs)
-        return super(PersonAdmin, self).formfield_for_foreignkey(
+        return super().formfield_for_foreignkey(
             db_field, request, **kwargs)
 
     fieldsets = (
@@ -63,7 +59,7 @@ class PersonAdmin(PlaceholderAdminMixin,
     )
 
     def get_queryset(self, request):
-        qs = super(PersonAdmin, self).get_queryset(request)
+        qs = super().get_queryset(request)
         qs = qs.annotate(group_count=Count('groups'))
         return qs
 
@@ -96,7 +92,7 @@ class GroupAdmin(PlaceholderAdminMixin,
     )
 
     def get_queryset(self, request):
-        qs = super(GroupAdmin, self).get_queryset(request)
+        qs = super().get_queryset(request)
         qs = qs.annotate(people_count=Count('people'))
         return qs
 

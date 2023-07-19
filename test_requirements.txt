@@ -1,15 +1,15 @@
 phonenumbers
 djangocms-text-ckeditor
 django-haystack
-aldryn-boilerplates
-aldryn-common
-aldryn-translation-tools
+djangocms-aldryn-common
+djangocms-aldryn-translation-tools
 coverage
-djangocms-helper
+djangocms-helper @ git+https://github.com/nephila/django-app-helper.git@3.3.1
 tox
 flake8
 python-coveralls
-six
+reportlab
+svglib
 
 # docs
 sphinx
@@ -19,4 +19,4 @@ sphinx-rtd-theme
 django-appconf
 django-spurl
 django-standard-form
-aldryn-search
+djangocms-aldryn-search

@@ -1,15 +1,10 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
-from django.utils.translation import get_language_from_request, ugettext as _
+from django.utils.translation import get_language_from_request, gettext as _
 
 from cms.toolbar_base import CMSToolbar
 from cms.toolbar_pool import toolbar_pool
 from cms.utils.urlutils import admin_reverse
 
 from parler.models import TranslatableModel
-from six import iteritems
 
 from .models import Group, Person
 
@@ -50,7 +45,7 @@ def get_admin_url(action, action_args=[], **url_args):
     """
     base_url = admin_reverse(action, args=action_args)
     # Converts [{key: value}, …] => ["key=value", …]
-    url_arg_list = sorted(iteritems(url_args))
+    url_arg_list = sorted(url_args.items())
     params = ["=".join([str(k), str(v)]) for (k, v) in url_arg_list]
     if params:
         return "?".join([base_url, "&".join(params)])

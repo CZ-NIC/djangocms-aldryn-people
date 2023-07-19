@@ -1,15 +1,11 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.http import Http404
 from django.test.client import RequestFactory
 from django.urls import reverse
 
 from cms.utils.i18n import force_language
 
-from . import BasePeopleTest, CMSRequestBasedTest, DefaultApphookMixin
 from ..views import DownloadVcardView
+from . import BasePeopleTest, CMSRequestBasedTest, DefaultApphookMixin
 
 
 class TestDownloadVcardView(DefaultApphookMixin,
@@ -25,10 +21,10 @@ class TestDownloadVcardView(DefaultApphookMixin,
         factory = RequestFactory()
         request = factory.get(person1_url)
         response = DownloadVcardView.as_view()(request, **kwargs)
-        filename = '{0}.vcf'.format(person1.name)
+        filename = f'{person1.name}.vcf'
         self.assertEqual(
             response["Content-Disposition"],
-            'attachment; filename="{0}"'.format(filename)
+            f'attachment; filename="{filename}"'
         )
         # Now, disable vcards for this person, and re-test
         person1.vcard_enabled = False

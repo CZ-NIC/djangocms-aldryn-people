@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.urls import reverse
 
-from . import BasePeopleTest
 from ..models import Person
+from . import BasePeopleTest
 
 
 class TestPersonAppHook(BasePeopleTest):

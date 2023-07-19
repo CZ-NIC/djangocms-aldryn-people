@@ -1,12 +1,9 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.test import TransactionTestCase
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.translation import override
 
-from . import BasePeopleTest, DefaultApphookMixin
 from ..models import Group, Person
+from . import BasePeopleTest, DefaultApphookMixin
 
 
 class TestBasicPeopleModels(DefaultApphookMixin, BasePeopleTest):
@@ -28,7 +25,7 @@ class TestBasicPeopleModels(DefaultApphookMixin, BasePeopleTest):
     def test_str(self):
         name = 'Person Str'
         person = Person.objects.create(name=name)
-        self.assertEqual(force_text(person), name)
+        self.assertEqual(force_str(person), name)
 
     def test_absolute_url(self):
         slug = 'person-slug'
@@ -39,13 +36,13 @@ class TestBasicPeopleModels(DefaultApphookMixin, BasePeopleTest):
             app_hook_url = self.app_hook_page.get_absolute_url()
             self.assertEqual(
                 person.get_absolute_url(),
-                '{0}{1}/'.format(app_hook_url, slug)
+                f'{app_hook_url}{slug}/'
             )
             # Now test that it will work when there's no slug too.
             person.slug = ''
             self.assertEqual(
                 person.get_absolute_url(),
-                '{0}{1}/'.format(app_hook_url, person.pk),
+                f'{app_hook_url}{person.pk}/',
             )
 
     def test_auto_slugify(self):
@@ -53,7 +50,7 @@ class TestBasicPeopleModels(DefaultApphookMixin, BasePeopleTest):
         slug = 'melchior-hoffman'
         person = Person.objects.create(name=name)
         person.save()
-        self.assertEquals(person.slug, slug)
+        self.assertEqual(person.slug, slug)
 
     def test_auto_slugify_same_name(self):
         name_1 = 'Melchior Hoffman'
@@ -66,8 +63,8 @@ class TestBasicPeopleModels(DefaultApphookMixin, BasePeopleTest):
         person_2 = Person.objects.create(name=name_2)
         person_2.save()
 
-        self.assertEquals(person_1.slug, slug_1)
-        self.assertEquals(person_2.slug, slug_2)
+        self.assertEqual(person_1.slug, slug_1)
+        self.assertEqual(person_2.slug, slug_2)
 
 
 class TestBasicGroupModel(TransactionTestCase):
@@ -239,11 +236,11 @@ class TestGroupModelTranslation(BasePeopleTest):
     def test_str(self):
         group1 = self.reload(self.group1, 'en')
         self.assertEqual(
-            force_text(group1),
+            force_str(group1),
             self.data['group1']['en']['name'],
         )
         group1 = self.reload(self.group1, 'de')
         self.assertEqual(
-            force_text(group1),
+            force_str(group1),
             self.data['group1']['de']['name'],
         )

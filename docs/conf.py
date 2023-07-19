@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Aldryn People documentation build configuration file, created by
 # sphinx-quickstart on Mon Jul 27 15:00:28 2015.
@@ -54,9 +53,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Aldryn People'
-copyright = u'2015, The Divio/Aldryn team and contributors'
-author = u'The Divio/Aldryn team and contributors'
+project = 'Aldryn People'
+copyright = '2015, The Divio/Aldryn team and contributors'
+author = 'The Divio/Aldryn team and contributors'
 
 version = '.'.join(aldryn_people.__version__.split('.', 2)[:2])
 # The full version, including alpha/beta/rc tags.
@@ -232,8 +231,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'AldrynPeople.tex', u'Aldryn People Documentation',
-   u'The Divio/Aldryn team and contributors', 'manual'),
+  (master_doc, 'AldrynPeople.tex', 'Aldryn People Documentation',
+   'The Divio/Aldryn team and contributors', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -262,7 +261,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'aldrynpeople', u'Aldryn People Documentation',
+    (master_doc, 'aldrynpeople', 'Aldryn People Documentation',
      [author], 1)
 ]
 
@@ -276,7 +275,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'AldrynPeople', u'Aldryn People Documentation',
+  (master_doc, 'AldrynPeople', 'Aldryn People Documentation',
    author, 'AldrynPeople', 'One line description of project.',
    'Miscellaneous'),
 ]
