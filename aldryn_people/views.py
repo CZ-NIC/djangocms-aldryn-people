@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import Http404, HttpResponse
 from django.utils.translation import get_language_from_request
@@ -23,7 +19,7 @@ def get_language(request):
     return lang
 
 
-class LanguageChangerMixin(object):
+class LanguageChangerMixin:
     """
     Convenience mixin that adds CMS Language Changer support.
     """
@@ -31,10 +27,10 @@ class LanguageChangerMixin(object):
         if not hasattr(self, 'object'):
             self.object = self.get_object()
         set_language_changer(request, self.object.get_absolute_url)
-        return super(LanguageChangerMixin, self).get(request, *args, **kwargs)
+        return super().get(request, *args, **kwargs)
 
 
-class AllowPKsTooMixin(object):
+class AllowPKsTooMixin:
     def get_object(self, queryset=None):
         """
         Bypass TranslatableSlugMixin if we are using PKs. You would only use
@@ -51,7 +47,7 @@ class AllowPKsTooMixin(object):
             return super(DetailView, self).get_object(queryset)
 
         # OK, just let Parler have its way with it.
-        return super(AllowPKsTooMixin, self).get_object(queryset)
+        return super().get_object(queryset)
 
 
 class DownloadVcardView(AllowPKsTooMixin, TranslatableSlugMixin, DetailView):
@@ -69,7 +65,7 @@ class DownloadVcardView(AllowPKsTooMixin, TranslatableSlugMixin, DetailView):
         except UnicodeError:
             pass
         response = HttpResponse(vcard, content_type="text/x-vCard")
-        response['Content-Disposition'] = 'attachment; filename="{0}"'.format(
+        response['Content-Disposition'] = 'attachment; filename="{}"'.format(
             filename)
         return response
 
@@ -93,15 +89,15 @@ class GroupListView(ListView):
         self.site_id = getattr(get_current_site(self.request), 'id', None)
         self.valid_languages = get_valid_languages(
             DEFAULT_APP_NAMESPACE, self.request_language, self.site_id)
-        return super(GroupListView, self).dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        qs = super(GroupListView, self).get_queryset()
+        qs = super().get_queryset()
         # prepare language properties for filtering
         return qs.translated(*self.valid_languages)
 
     def get_context_data(self, **kwargs):
-        context = super(GroupListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         qs_ungrouped = Person.objects.filter(groups__isnull=True)
         context['ungrouped_people'] = qs_ungrouped.translated(
             *self.valid_languages)

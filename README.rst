@@ -1,14 +1,10 @@
-**Deprecated**
+|Project continuation| |Pypi package| |Pypi status| |Python versions| |License|
 
-This project is no longer supported.
 
-Divio will undertake no further development or maintenance of this project. If you are interested in continuing to develop it, use the fork functionality from GitHub. We are not able to transfer ownership of the repository to another party.
-
-############################
 Aldryn People for django CMS
-############################
+============================
 
-|PyPI Version| |Build Status| |Coverage Status| |codeclimate| |requires_io|
+Continuation of the deprecated project `Divio Aldryn search <https://github.com/divio/aldryn-translation-tools>`_.
 
 Aldryn People allows you to:
 
@@ -37,24 +33,18 @@ Contributors are listed at `contributions page
 <https://github.com/aldryn/aldryn-translation-tools/graphs/contributors>`_.
 
 
-************
-Requirements
-************
-
-* Python 2.7, 3.4, 3.5, 3.6
-* django CMS 3.4.5, 3.5, 3.6
-* Django 1.11, 2.0, 2.1
-
-
-.. |PyPI Version| image:: https://badge.fury.io/py/aldryn_people.svg
-    :target: http://badge.fury.io/py/aldryn_people
-.. |Build Status| image:: https://travis-ci.org/divio/django-cms.svg?branch=develop
-    :target: https://travis-ci.org/divio/django-cms
-.. |Coverage Status| image:: https://img.shields.io/coveralls/aldryn/aldryn-people.svg
-    :target: https://coveralls.io/r/aldryn/aldryn-people
-.. |codeclimate| image:: https://codeclimate.com/github/aldryn/aldryn-people/badges/gpa.svg
-   :target: https://codeclimate.com/github/aldryn/aldryn-people
-   :alt: Code Climate
-.. |requires_io| image:: https://requires.io/github/aldryn/aldryn-people/requirements.svg?branch=master
-   :target: https://requires.io/github/aldryn/aldryn-people/requirements/?branch=master
-   :alt: Requirements Status
+.. |Project continuation| image:: https://img.shields.io/badge/Continuation-Divio_Aldryn_Search-blue
+    :target: https://github.com/CZ-NIC/djangocms-aldryn-people
+    :alt: Continuation of the deprecated project "Divio Aldryn People"
+.. |Pypi package| image:: https://img.shields.io/pypi/v/djangocms-aldryn-people.svg
+    :target: https://pypi.python.org/pypi/djangocms-aldryn-people/
+    :alt: Pypi package
+.. |Pypi status| image:: https://img.shields.io/pypi/status/djangocms-aldryn-people.svg
+   :target: https://pypi.python.org/pypi/djangocms-aldryn-people
+   :alt: status
+.. |Python versions| image:: https://img.shields.io/pypi/pyversions/djangocms-aldryn-people.svg
+   :target: https://pypi.python.org/pypi/djangocms-aldryn-people
+   :alt: Python versions
+.. |License| image:: https://img.shields.io/pypi/l/djangocms-aldryn-people.svg
+    :target: https://pypi.python.org/pypi/djangocms-aldryn-people/
+    :alt: license

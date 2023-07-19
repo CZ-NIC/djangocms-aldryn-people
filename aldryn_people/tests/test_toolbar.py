@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from django.test import TransactionTestCase
 
 from ..cms_toolbars import get_admin_url

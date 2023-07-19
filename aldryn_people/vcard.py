@@ -1,25 +1,23 @@
 from itertools import chain
 from re import sub
 
-from six import iteritems, string_types
 
-
-class Vcard(object):
+class Vcard:
     def __init__(self):
         self.lines = []
 
     def add_line(self, key, value, **params):
         key_and_params = ';'.join(chain(
             (key,),
-            ('{0}={1}'.format(k, v) for k, v in iteritems(params)),
+            (f'{k}={v}' for k, v in params.items()),
         ))
 
-        if isinstance(value, string_types):
+        if isinstance(value, str):
             value = self.__escape(value)
         else:
             value = ';'.join(self.__escape(x) for x in value)
 
-        line = '{0}:{1}'.format(key_and_params, value)
+        line = f'{key_and_params}:{value}'
         self.lines.append(line)
 
     def __escape(self, value):

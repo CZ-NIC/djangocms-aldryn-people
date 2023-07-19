@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 import sys
 
 from django.conf import settings
@@ -31,11 +27,11 @@ APP_MODULE = 'aldryn_people.cms_apps'
 DEFAULT_PEOPLE_NAMESPACE = 'aldryn_people'
 
 
-class CleanUpMixin(object):
+class CleanUpMixin:
 
     def tearDown(self):
         self.reset_all()
-        super(CleanUpMixin, self).tearDown()
+        super().tearDown()
 
     def reset_all(self):
         """
@@ -93,18 +89,18 @@ class CleanUpMixin(object):
                 del sys.modules[module]
 
 
-class DefaultApphookMixin(object):
+class DefaultApphookMixin:
     """
     Creates the default app hook page for aldryn-people. Relyes on
     BasePeopleTest.setUp method and its utilities.
     """
 
     def setUp(self):
-        super(DefaultApphookMixin, self).setUp()
+        super().setUp()
         self.app_hook_page = self.create_apphook_page(multilang=True)
 
 
-class DefaultSetupMixin(object):
+class DefaultSetupMixin:
     su_username = 'user'
     su_password = 'pass'
 
@@ -139,7 +135,7 @@ class DefaultSetupMixin(object):
         self.page.publish('de')
         self.placeholder = self.page.placeholders.all()[0]
         self.superuser = self.create_superuser()
-        super(DefaultSetupMixin, self).setUp()
+        super().setUp()
 
     def create_superuser(self):
         return User.objects.create_superuser(
@@ -149,8 +145,8 @@ class DefaultSetupMixin(object):
                     is_superuser=False):
         return User.objects.create(
             username=user_name,
-            first_name='{0} first_name'.format(user_name),
-            last_name='{0} last_name'.format(user_name),
+            first_name=f'{user_name} first_name',
+            last_name=f'{user_name} last_name',
             password=make_password(user_password),
             is_staff=is_staff,
             is_superuser=is_superuser
@@ -208,7 +204,7 @@ class BasePeopleTest(DefaultSetupMixin,
         obj.save()
 
     def setUp(self):
-        super(BasePeopleTest, self).setUp()
+        super().setUp()
         with override('en'):
             self.person1 = Person(**self.data['person1']['en'])
             self.group1 = Group(**self.data['group1']['en'])
@@ -276,7 +272,7 @@ class CMSRequestBasedTest(CleanUpMixin, TestCase):
         # If there are multiple languages, create the translations
         if len(languages) > 1:
             for lang in languages[1:]:
-                title_lang = "{0}-{1}".format(base_title, lang)
+                title_lang = f"{base_title}-{lang}"
                 create_title(language=lang, title=title_lang, page=page)
                 page.publish(lang)
         return page.get_draft_object()
