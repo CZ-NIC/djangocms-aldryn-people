@@ -33,7 +33,7 @@ Contributors are listed at `contributions page
 <https://github.com/aldryn/aldryn-translation-tools/graphs/contributors>`_.
 
 
-.. |Project continuation| image:: https://img.shields.io/badge/Continuation-Divio_Aldryn_Search-blue
+.. |Project continuation| image:: https://img.shields.io/badge/Continuation-Divio_Aldryn_People-blue
     :target: https://github.com/CZ-NIC/djangocms-aldryn-people
     :alt: Continuation of the deprecated project "Divio Aldryn People"
 .. |Pypi package| image:: https://img.shields.io/pypi/v/djangocms-aldryn-people.svg

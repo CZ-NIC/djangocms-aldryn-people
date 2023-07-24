@@ -42,7 +42,7 @@ setup(
     author_email='info@divio.ch',
     url='https://github.com/CZ-NIC/djangocms-aldryn-people',
     packages=find_packages(),
-    license='BSD License',
+    license='BSD',
     platforms=['OS Independent'],
     install_requires=REQUIREMENTS,
     classifiers=CLASSIFIERS,
