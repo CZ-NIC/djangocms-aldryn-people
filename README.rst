@@ -46,5 +46,5 @@ Contributors are listed at `contributions page
    :target: https://pypi.python.org/pypi/djangocms-aldryn-people
    :alt: Python versions
 .. |License| image:: https://img.shields.io/pypi/l/djangocms-aldryn-people.svg
-    :target: https://pypi.python.org/pypi/djangocms-aldryn-people/
+    :target: https://github.com/CZ-NIC/djangocms-aldryn-people/blob/master/LICENSE.txt
     :alt: license

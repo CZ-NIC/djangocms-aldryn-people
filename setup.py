@@ -7,7 +7,7 @@ REQUIREMENTS = [
     'djangocms-aldryn-common',
     'djangocms-aldryn-translation-tools',
     'django-filer',
-    'easy-thumbnails',
+    'easy-thumbnails[svg]',
     'phonenumbers',
 ]
 
