@@ -6,6 +6,7 @@ from aldryn_people import __version__
 REQUIREMENTS = [
     'djangocms-aldryn-common',
     'djangocms-aldryn-translation-tools',
+    'djangocms-aldryn-search',
     'django-filer',
     'easy-thumbnails[svg]',
     'phonenumbers',
