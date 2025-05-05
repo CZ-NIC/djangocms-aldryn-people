@@ -33,7 +33,7 @@ HELPER_SETTINGS = {
     'INSTALLED_APPS': [
         'aldryn_common',
         'aldryn_translation_tools',
-        'djangocms_text_ckeditor',
+        'djangocms_text',
         'easy_thumbnails',
         'filer',
         'parler',

@@ -4,6 +4,11 @@ Changelog
 Unreleased
 ==========
 
+3.0.3 (2025-05-05)
+==================
+
+* Replace djangocms_text_ckeditor by djangocms_text.
+
 3.0.2 (2023-09-27)
 ==================
 
