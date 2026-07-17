@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 
-from cms.admin.placeholderadmin import PlaceholderAdminMixin
+from cms.admin.placeholderadmin import PlaceholderAdmin
 
 from aldryn_translation_tools.admin import AllTranslationsMixin
 from parler.admin import TranslatableAdmin
@@ -11,7 +11,7 @@ from parler.admin import TranslatableAdmin
 from .models import Group, Person
 
 
-class PersonAdmin(PlaceholderAdminMixin,
+class PersonAdmin(PlaceholderAdmin,
                   AllTranslationsMixin,
                   TranslatableAdmin):
 
@@ -69,7 +69,7 @@ class PersonAdmin(PlaceholderAdminMixin,
     num_groups.admin_order_field = 'group_count'
 
 
-class GroupAdmin(PlaceholderAdminMixin,
+class GroupAdmin(PlaceholderAdmin,
                  AllTranslationsMixin,
                  TranslatableAdmin):
 
