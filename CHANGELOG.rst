@@ -4,6 +4,11 @@ Changelog
 Unreleased
 ==========
 
+3.0.3 (2026-09-14)
+==================
+
+* Remove PlaceholderAdminMixin from class PersonAdmin and GroupAdmin.
+
 3.0.2 (2023-09-27)
 ==================
 
