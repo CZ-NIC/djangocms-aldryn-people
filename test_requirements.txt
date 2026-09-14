@@ -4,7 +4,7 @@ django-haystack
 djangocms-aldryn-common
 djangocms-aldryn-translation-tools
 coverage
-djangocms-helper @ git+https://github.com/nephila/django-app-helper.git@3.3.1
+# djangocms-helper @ git+https://github.com/nephila/django-app-helper.git@3.3.1
 tox
 flake8
 python-coveralls
